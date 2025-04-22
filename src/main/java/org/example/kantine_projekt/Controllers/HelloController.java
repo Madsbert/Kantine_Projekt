@@ -1,4 +1,4 @@
-package org.example.kantine_projekt;
+package org.example.kantine_projekt.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
