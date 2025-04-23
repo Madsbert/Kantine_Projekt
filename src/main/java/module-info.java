@@ -1,6 +1,7 @@
 module org.example.kantine_projekt {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens org.example.kantine_projekt to javafx.fxml;
