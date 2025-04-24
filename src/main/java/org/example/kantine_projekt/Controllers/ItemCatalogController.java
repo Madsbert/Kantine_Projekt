@@ -277,14 +277,5 @@ public class ItemCatalogController {
     }
 
     public void logOut(){}
-
-
-
-
-
-
-
-
-
 }
 
