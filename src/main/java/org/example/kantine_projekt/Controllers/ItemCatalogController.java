@@ -191,7 +191,12 @@ public class ItemCatalogController {
             if (!found) {
                 db.createItem(item);
             }
+            else
+            {
+                db.updateItem(item);
+            }
         }
+        updateDisplayedItems();
     }
 
     public void switchSceneToOrderCatalog(){}
