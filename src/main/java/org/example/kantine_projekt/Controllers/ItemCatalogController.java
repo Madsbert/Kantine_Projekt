@@ -140,7 +140,7 @@ public class ItemCatalogController {
             if (dialogButton == createButtonType) {
                 return new Item(
                         nameField.getText(),
-                        1,
+                        Integer.parseInt(supplierField.getText()),
                         Double.parseDouble(unitPriceField.getText()),
                         Integer.parseInt(minimumQuantityField.getText()),
                         Integer.parseInt(currentQuantityField.getText()),
@@ -176,8 +176,21 @@ public class ItemCatalogController {
     public void saveChanges()
     {
         ItemsDBInterface db = new ItemsDB();
+
+        List<Item> existingItems = db.getAllItems();
+
         for (Item item : items) {
-            db.createItem(item);
+
+            boolean found = false;
+            for (Item existingItem : existingItems) {
+                if (existingItem.getName().equals(item.getName())) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                db.createItem(item);
+            }
         }
     }
 
