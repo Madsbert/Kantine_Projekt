@@ -1,5 +1,7 @@
 package org.example.kantine_projekt.Domains;
 
+import org.example.kantine_projekt.Controllers.LoginController;
+
 public class Item {
     private int itemId;
     private String name;

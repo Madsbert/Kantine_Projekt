@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import org.example.kantine_projekt.CanteenApplication;
 import org.example.kantine_projekt.Domains.AccessLevels;
 import org.example.kantine_projekt.Domains.Employee;
-import org.example.kantine_projekt.CanteenApplication;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,9 +18,9 @@ public class LoginController {
     @FXML
     private TextField EmployeeIDTextfield;
     @FXML
-    private RadioButton ItemCatalogRadioButton;
+    private RadioButton itemCatalogRadioButton;
     @FXML
-    private RadioButton OrderCatalogRadioButton;
+    private RadioButton orderCatalogRadioButton;
 
     ToggleGroup group = new ToggleGroup();
 
@@ -37,8 +36,8 @@ public class LoginController {
         employees.add(new Employee("Mads", 10, AccessLevels.CanteenWorker));
         employees.add(new Employee("Mikkel", 1, AccessLevels.Employee));
 
-        ItemCatalogRadioButton.setToggleGroup(group);
-        OrderCatalogRadioButton.setToggleGroup(group);
+        itemCatalogRadioButton.setToggleGroup(group);
+        orderCatalogRadioButton.setToggleGroup(group);
 
     }
 
@@ -51,17 +50,17 @@ public class LoginController {
             // Switch on the access level
             switch (foundEmployee.getAccessLevel()) {
                 case Employee:
-                    if (ItemCatalogRadioButton.isSelected()){
+                    if (itemCatalogRadioButton.isSelected()){
                         ErrorLabel.setText("You do not have access to the item catalog");}
-                    else if (OrderCatalogRadioButton.isSelected()){
+                    else if (orderCatalogRadioButton.isSelected()){
                         ErrorLabel.setText("You do not have access to the order catalog");
                     }
                     break;
 
                 case CanteenWorker:
-                    if (ItemCatalogRadioButton.isSelected()){
+                    if (itemCatalogRadioButton.isSelected()){
                     switchToSceneItemCatalog(actionEvent,foundEmployee);}
-                    else if (OrderCatalogRadioButton.isSelected()){
+                    else if (orderCatalogRadioButton.isSelected()){
                         ErrorLabel.setText("The Order catalog is not supported at this time");
                     }
 
@@ -69,9 +68,9 @@ public class LoginController {
                     break;
 
                 case CanteenBoss:
-                    if (ItemCatalogRadioButton.isSelected()){
+                    if (itemCatalogRadioButton.isSelected()){
                         switchToSceneItemCatalog(actionEvent,foundEmployee);}
-                    else if (OrderCatalogRadioButton.isSelected()){
+                    else if (orderCatalogRadioButton.isSelected()){
                         ErrorLabel.setText("The Order catalog is not supported at this time");
                     }
 
@@ -103,6 +102,7 @@ public class LoginController {
         // Get controller and set employee
         ItemCatalogController controller = fxmlLoader.getController();
         controller.setCurrentEmployee(employee);
+        controller.prepare();
 
         stage.setTitle("Item Catalog");
         stage.setScene(scene);
