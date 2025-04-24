@@ -2,6 +2,9 @@ package org.example.kantine_projekt.Domains;
 
 import org.example.kantine_projekt.Controllers.LoginController;
 
+/**
+ * a class which defines an item
+ */
 public class Item {
     private int itemId;
     private String name;

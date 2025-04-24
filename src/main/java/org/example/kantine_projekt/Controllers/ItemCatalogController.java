@@ -27,6 +27,9 @@ public class ItemCatalogController {
     @FXML
     public VBox vBoxForItems;
 
+    /**
+     * initiializing a List of items
+     */
     public void initialize()
     {
         ItemsDBInterface db = new ItemsDB();
@@ -45,6 +48,10 @@ public class ItemCatalogController {
     boolean currentQuantityValid = false;
     boolean reorderAmountValid = false;
     Node createButton = null;
+
+    /**
+     * method to add a new item to catalog
+     */
     public void addNewItem()
     {
         if (currentEmployee.getAccessLevel() != AccessLevels.CanteenBoss)
@@ -159,6 +166,9 @@ public class ItemCatalogController {
         });
     }
 
+    /**
+     * Controlls if the input is valid
+     */
     private void createAllowed()
     {
         if (nameValid && supplierValid && unitPriceValid && minimumQuantityValid && currentQuantityValid && reorderAmountValid )
@@ -183,6 +193,9 @@ public class ItemCatalogController {
 
     }
 
+    /**
+     * adds Labels and adds from database the coherent values
+     */
     public void updateDisplayedItems()
     {
         vBoxForItems.getChildren().clear();

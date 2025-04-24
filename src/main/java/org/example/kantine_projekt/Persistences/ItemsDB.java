@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CRUD operations for item
+ */
 public class ItemsDB implements ItemsDBInterface {
     private List<Item> items;
 
@@ -17,6 +20,10 @@ public class ItemsDB implements ItemsDBInterface {
         return 0;
     }
 
+    /**
+     * Get all items in the database
+     * @return
+     */
     @Override
     public List<Item> getAllItems() {
         String sp = "{call get_all_items_procedure()}";
@@ -36,6 +43,11 @@ public class ItemsDB implements ItemsDBInterface {
         }
     }
 
+    /**
+     * gets the supplier from the ID of an Item
+     * @param itemID itemID
+     * @return a string of the suppliers name
+     */
     @Override
     public String getSupplierFromItemID(int itemID){
         String sp = "{call get_supplier_from_itemID(?)}";
@@ -62,6 +74,10 @@ public class ItemsDB implements ItemsDBInterface {
         return null;
     }
 
+    /**
+     * Creates an item
+     * @param item an item
+     */
     @Override
     public void createItem(Item item) {
         String sp = "{call create_new_item(?,?,?,?,?,?)}";

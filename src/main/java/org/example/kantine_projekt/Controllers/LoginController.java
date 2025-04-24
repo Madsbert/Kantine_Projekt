@@ -13,7 +13,11 @@ import org.example.kantine_projekt.Domains.Employee;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * class to login
+ */
 public class LoginController {
     @FXML
     private TextField EmployeeIDTextfield;
@@ -28,8 +32,11 @@ public class LoginController {
     @FXML
     private Label ErrorLabel;
 
-    ArrayList<Employee> employees = new ArrayList<>();
+    List<Employee> employees = new ArrayList<>();
 
+    /**
+     * initializes employee List and groups
+     */
     public void initialize() {
 
         employees.add(new Employee("Jakob", 100, AccessLevels.CanteenBoss));
@@ -42,6 +49,11 @@ public class LoginController {
     }
 
 
+    /**
+     * logins to the website if you have the clearance and gices right clearence
+     * @param actionEvent an event
+     * @throws IOException
+     */
     public void LoginButtonClicked (ActionEvent actionEvent) throws IOException {
         String employeeID = EmployeeIDTextfield.getText();
         Employee foundEmployee = findEmployeeById(Integer.parseInt(employeeID));
@@ -85,6 +97,11 @@ public class LoginController {
         else {ErrorLabel.setText("Please enter a valid employee ID");}
     }
 
+    /**
+     * finds employee acording to ID
+     * @param id employee id
+     * @return
+     */
     private Employee findEmployeeById(int id) {
         for (Employee emp : employees) {
             if (emp.getEmployeeID() == id) {
@@ -94,6 +111,12 @@ public class LoginController {
         return null;
     }
 
+    /**
+     * switches scene
+     * @param actionEvent
+     * @param employee
+     * @throws IOException
+     */
     public void switchToSceneItemCatalog(ActionEvent actionEvent,Employee employee) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(CanteenApplication.class.getResource("hello-view.fxml"));
