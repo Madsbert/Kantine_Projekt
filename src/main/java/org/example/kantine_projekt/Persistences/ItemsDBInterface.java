@@ -16,4 +16,5 @@ public interface ItemsDBInterface {
     public void updateItem(Items item);
 
     public void deleteItem(int itemID);
+
 }
