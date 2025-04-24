@@ -1,19 +1,20 @@
 package org.example.kantine_projekt.Persistences;
 
 import org.example.kantine_projekt.Domains.Item;
+import org.example.kantine_projekt.Domains.Items;
 
 import java.util.List;
 
 public interface ItemsDBInterface {
     public int getPriceOfItem(int itemID);
 
-    public List<Item> getAllItems();
+    public List<Items> getAllItems();
 
-    public Item getItem(int itemID);
+    public Items getItem(int itemID);
 
-    public void createItem(Item item);
+    public void createItem(Items item);
 
-    public void updateItem(Item item);
+    public void updateItem(Items item);
 
     public void deleteItem(int itemID);
 
