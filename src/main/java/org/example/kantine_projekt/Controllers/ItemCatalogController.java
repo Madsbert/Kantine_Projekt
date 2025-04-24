@@ -27,9 +27,9 @@ public class ItemCatalogController {
 
     public void initialize()
     {
-        items.add(new Item("Æble", "ÆbleFrank", 6, 20, 32, 40));
-        items.add(new Item("Banana", "FriskFrugt", 8, 20, 27, 40));
-        items.add(new Item("Salat", "FriskSalat", 22, 10, 14, 25));
+        items.add(new Item("Æble", -1, 6, 20, 32, 40));
+        items.add(new Item("Banana", -1, 8, 20, 27, 40));
+        items.add(new Item("Salat", -1, 22, 10, 14, 25));
     }
 
     public void prepare()
@@ -139,7 +139,7 @@ public class ItemCatalogController {
             if (dialogButton == createButtonType) {
                 return new Item(
                         nameField.getText(),
-                        supplierField.getText(),
+                        -1,
                         Integer.parseInt(unitPriceField.getText()),
                         Integer.parseInt(minimumQuantityField.getText()),
                         Integer.parseInt(currentQuantityField.getText()),
@@ -204,7 +204,7 @@ public class ItemCatalogController {
         {
             TextField nameField = new TextField(item.getName());
             nameField.setPromptText("Name");
-            TextField supplierField = new TextField(item.getSupplierID());
+            TextField supplierField = new TextField("" + item.getSupplierID());
             supplierField.setPromptText("Supplier");
             TextField unitPriceField = new TextField("" + item.getUnitPrice());
             unitPriceField.setPromptText("Unit Price");
