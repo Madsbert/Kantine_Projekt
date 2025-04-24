@@ -111,7 +111,7 @@ public class ItemCatalogController {
         });
 
         supplierField.textProperty().addListener((observable, oldValue, newValue) -> {
-            supplierValid = supplierField.getText().matches("[a-zA-ZæøåÆØÅ]+");
+            supplierValid = supplierField.getText().matches("[0-9]+");
             createAllowed();
         });
 
@@ -140,7 +140,7 @@ public class ItemCatalogController {
             if (dialogButton == createButtonType) {
                 return new Item(
                         nameField.getText(),
-                        -1,
+                        1,
                         Double.parseDouble(unitPriceField.getText()),
                         Integer.parseInt(minimumQuantityField.getText()),
                         Integer.parseInt(currentQuantityField.getText()),
@@ -173,7 +173,13 @@ public class ItemCatalogController {
 
     public void deleteItem(){}
 
-    public void saveChanges(){}
+    public void saveChanges()
+    {
+        ItemsDBInterface db = new ItemsDB();
+        for (Item item : items) {
+            db.createItem(item);
+        }
+    }
 
     public void switchSceneToOrderCatalog(){}
 
@@ -202,14 +208,12 @@ public class ItemCatalogController {
 
         ItemsDBInterface db = new ItemsDB();
 
-
-
         int i = 1;
         for (Item item : items)
         {
             TextField nameField = new TextField(item.getName());
             nameField.setPromptText("Name");
-            TextField supplierField = new TextField("" + item.getSupplierID());
+            TextField supplierField = new TextField(db.getSupplierFromItemID(item.getItemId()));
             supplierField.setPromptText("Supplier");
             TextField unitPriceField = new TextField("" + item.getUnitPrice());
             unitPriceField.setPromptText("Unit Price");
@@ -314,13 +318,5 @@ public class ItemCatalogController {
     public void setCurrentEmployee(Employee currentEmployee){
         this.currentEmployee = currentEmployee;
     }
-
-
-
-
-
-
-
-
 }
 
