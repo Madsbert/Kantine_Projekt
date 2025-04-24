@@ -1,17 +1,16 @@
 package org.example.kantine_projekt.Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 public class ItemCatalogController {
 
     @FXML
-    private Label welcomeText;
+    private VBox vBoxForItems;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     public void initialize() {}
 
