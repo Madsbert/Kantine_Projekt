@@ -3,13 +3,13 @@ package org.example.kantine_projekt.Domains;
 public class Item {
     private int itemId;
     private String name;
-    private String supplierID;
-    private int unitPrice;
+    private int supplierID;
+    private double unitPrice;
     private int minimumQuantity;
     private int currentQuantity;
     private int reorderAmount;
 
-    public Item(int itemId, String name, String supplierID, int unitPrice, int minimumQuantity, int currentQuantity, int reorderAmount) {
+    public Item(int itemId, String name, int supplierID, double unitPrice, int minimumQuantity, int currentQuantity, int reorderAmount) {
         this.itemId = itemId;
         this.name = name;
         this.supplierID = supplierID;
@@ -19,7 +19,7 @@ public class Item {
         this.reorderAmount = reorderAmount;
     }
 
-    public Item(String name, String supplierID, int unitPrice, int minimumQuantity, int currentQuantity, int reorderAmount) {
+    public Item(String name, int supplierID, double unitPrice, int minimumQuantity, int currentQuantity, int reorderAmount) {
         this.name = name;
         this.supplierID = supplierID;
         this.unitPrice = unitPrice;
@@ -44,19 +44,19 @@ public class Item {
         this.name = name;
     }
 
-    public String getSupplierID() {
+    public int getSupplierID() {
         return supplierID;
     }
 
-    public void setSupplierID(String supplierID) {
+    public void setSupplierID(int supplierID) {
         this.supplierID = supplierID;
     }
 
-    public int getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(int unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 

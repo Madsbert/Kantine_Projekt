@@ -1,17 +1,16 @@
 package org.example.kantine_projekt.Persistences;
 
-import org.example.kantine_projekt.Domains.Items;
+import org.example.kantine_projekt.Domains.Item;
 import org.example.kantine_projekt.Foundation.DBConnection;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsDB implements ItemsDBInterface {
-    private List<Items> items;
+    private List<Item> items;
 
     @Override
     public int getPriceOfItem(int itemID) {
@@ -19,14 +18,14 @@ public class ItemsDB implements ItemsDBInterface {
     }
 
     @Override
-    public List<Items> getAllItems() {
+    public List<Item> getAllItems() {
         String sp = "{call get_all_items_procedure(?)}";
         Connection conn = DBConnection.getConnection();
         try(CallableStatement cstmt = conn.prepareCall(sp)) {
-            List<Items> itemsList = new ArrayList<Items>();
+            List<Item> itemsList = new ArrayList<Item>();
             ResultSet rs = cstmt.executeQuery();
             while(rs.next()) {
-                itemsList.add(new Items(rs.getInt("fldItemID"),rs.getString("fldName"),rs.getInt("fldSupplierID"), rs.getDouble("fldUnitprice"),rs.getInt("fldMinStock"), rs.getInt("fldCurrentStock"),rs.getInt("fldReorderAmount")));
+                itemsList.add(new Item(rs.getInt("fldItemID"),rs.getString("fldName"),rs.getInt("fldSupplierID"), rs.getDouble("fldUnitprice"),rs.getInt("fldMinStock"), rs.getInt("fldCurrentStock"),rs.getInt("fldReorderAmount")));
             }
             return itemsList;
 
@@ -40,17 +39,17 @@ public class ItemsDB implements ItemsDBInterface {
 
 
     @Override
-    public Items getItem(int itemID) {
+    public Item getItem(int itemID) {
         return null;
     }
 
     @Override
-    public void createItem(Items item) {
+    public void createItem(Item item) {
 
     }
 
     @Override
-    public void updateItem(Items item) {
+    public void updateItem(Item item) {
 
     }
 

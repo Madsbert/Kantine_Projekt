@@ -5,7 +5,6 @@ import org.example.kantine_projekt.Domains.Order;
 import org.example.kantine_projekt.Foundation.DBConnection;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OrderDB implements OrderDBInterface {
