@@ -61,6 +61,22 @@ public class ItemsDB implements ItemsDBInterface {
 
     @Override
     public void createItem(Item item) {
+        String sp = "{call create_new_item(?,?,?,?,?,?)}";
+        Connection conn = DBConnection.getConnection();
+        try (CallableStatement cstmt = conn.prepareCall(sp)){
+            cstmt.setInt(1, item.getSupplierID());
+            cstmt.setString(2, item.getName());
+            cstmt.setDouble(3, item.getUnitPrice());
+            cstmt.setInt(4,item.getMinimumQuantity());
+            cstmt.setInt(5, item.getCurrentQuantity());
+            cstmt.setInt(6, item.getReorderAmount());
+            cstmt.executeUpdate();
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("something went wrong in createItem");
+            throw new RuntimeException(e);
+        }
 
     }
 
