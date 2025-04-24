@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import org.example.kantine_projekt.Domains.Item;
+import org.example.kantine_projekt.Persistences.ItemsDB;
+import org.example.kantine_projekt.Persistences.ItemsDBInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +29,8 @@ public class ItemCatalogController {
 
     public void initialize()
     {
-        items.add(new Item("Æble", -1, 6, 20, 32, 40));
-        items.add(new Item("Banana", -1, 8, 20, 27, 40));
-        items.add(new Item("Salat", -1, 22, 10, 14, 25));
+        ItemsDBInterface db = new ItemsDB();
+        items = db.getAllItems();
     }
 
     public void prepare()
@@ -98,7 +99,7 @@ public class ItemCatalogController {
 
         dialog.getDialogPane().setContent(grid);
 
-
+        ItemsDBInterface db = new ItemsDB();
 
         // 5) Disable the Create button until name is non-empty
         createButton = dialog.getDialogPane().lookupButton(createButtonType);
@@ -115,7 +116,7 @@ public class ItemCatalogController {
         });
 
         unitPriceField.textProperty().addListener((observable, oldValue, newValue) -> {
-            unitPriceValid = unitPriceField.getText().matches("[0-9]+");
+            unitPriceValid = unitPriceField.getText().matches("[0-9.0-9]+");
             createAllowed();
         });
 
@@ -140,7 +141,7 @@ public class ItemCatalogController {
                 return new Item(
                         nameField.getText(),
                         -1,
-                        Integer.parseInt(unitPriceField.getText()),
+                        Double.parseDouble(unitPriceField.getText()),
                         Integer.parseInt(minimumQuantityField.getText()),
                         Integer.parseInt(currentQuantityField.getText()),
                         Integer.parseInt(reorderAmountField.getText())
@@ -199,6 +200,10 @@ public class ItemCatalogController {
         GridPane.setMargin(grid, new Insets(200, 20, 20, 20));
         grid.setAlignment(Pos.CENTER);
 
+        ItemsDBInterface db = new ItemsDB();
+
+
+
         int i = 1;
         for (Item item : items)
         {
@@ -255,7 +260,7 @@ public class ItemCatalogController {
             });
 
             unitPriceField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if (!unitPriceField.getText().matches("[0-9]+"))
+                if (!unitPriceField.getText().matches("[0-9.0-9]+"))
                 {
                     unitPriceField.setStyle("-fx-background-color: red");
                 }
