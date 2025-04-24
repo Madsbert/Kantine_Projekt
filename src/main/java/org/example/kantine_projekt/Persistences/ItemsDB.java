@@ -31,12 +31,26 @@ public class ItemsDB implements ItemsDBInterface {
 
         }catch(Exception e){
             System.out.println(e.getMessage());
-            System.out.println("something went wrong in  makeOrder");
+            System.out.println("something went wrong in getAllItems");
             throw new RuntimeException(e);
         }
     }
 
+    @Override
+    public String getSupplierFromItemID(int itemID){
+        String sp = "{call get_supplier_from_itemID(?)}";
+        Connection conn = DBConnection.getConnection();
+        try(CallableStatement cstmt = conn.prepareCall(sp)){
+            cstmt.setInt(1, itemID);
+            ResultSet rs = cstmt.executeQuery();
+            return rs.getString("fldSupplierID");
 
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("something went wrong in getSupplierFromItemID");
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public Item getItem(int itemID) {

@@ -5,6 +5,8 @@ import org.example.kantine_projekt.Domains.Item;
 import java.util.List;
 
 public interface ItemsDBInterface {
+    public String getSupplierFromItemID(int itemID);
+
     public int getPriceOfItem(int itemID);
 
     public List<Item> getAllItems();
