@@ -103,6 +103,7 @@ public class LoginController {
         // Get controller and set employee
         ItemCatalogController controller = fxmlLoader.getController();
         controller.setCurrentEmployee(employee);
+        controller.prepare();
 
         stage.setTitle("Item Catalog");
         stage.setScene(scene);

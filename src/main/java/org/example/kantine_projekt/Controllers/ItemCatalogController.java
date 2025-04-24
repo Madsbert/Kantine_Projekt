@@ -3,6 +3,7 @@ package org.example.kantine_projekt.Controllers;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import org.example.kantine_projekt.Domains.AccessLevels;
 import org.example.kantine_projekt.Domains.Employee;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
@@ -26,6 +27,13 @@ public class ItemCatalogController {
 
     public void initialize()
     {
+        items.add(new Item("Æble", "ÆbleFrank", 6, 20, 32, 40));
+        items.add(new Item("Banana", "FriskFrugt", 8, 20, 27, 40));
+        items.add(new Item("Salat", "FriskSalat", 22, 10, 14, 25));
+    }
+
+    public void prepare()
+    {
         updateDisplayedItems();
     }
 
@@ -38,6 +46,16 @@ public class ItemCatalogController {
     Node createButton = null;
     public void addNewItem()
     {
+        if (currentEmployee.getAccessLevel() != AccessLevels.CanteenBoss)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Access Denied");
+            alert.setHeaderText("Access Denied");
+            alert.setContentText("You are not allowed to add an item");
+            alert.showAndWait();
+            return;
+        }
+
         Dialog<Item> dialog = new Dialog<>();
         dialog.setTitle("Create New Item");
         dialog.setHeaderText("Enter the details for your new item:");
@@ -196,6 +214,16 @@ public class ItemCatalogController {
             currentQuantityField.setPromptText("Current Quantity");
             TextField reorderAmountField = new TextField("" + item.getReorderAmount());
             reorderAmountField.setPromptText("Reorder Amount");
+
+            if (currentEmployee != null && currentEmployee.getAccessLevel() != AccessLevels.CanteenBoss)
+            {
+                nameField.setDisable(true);
+                supplierField.setDisable(true);
+                unitPriceField.setDisable(true);
+                minimumQuantityField.setDisable(true);
+                currentQuantityField.setDisable(true);
+                reorderAmountField.setDisable(true);
+            }
 
             grid.add(nameField, 0, i);
             grid.add(supplierField, 1, i);
