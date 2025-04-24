@@ -16,13 +16,13 @@
       </Label>
       <TextField fx:id="EmployeeIDTextfield" layoutX="57.0" layoutY="82.0" prefHeight="14.0" prefWidth="264.0" promptText="Enter Employee ID" />
       <Button layoutX="147.0" layoutY="199.0" mnemonicParsing="false" onAction="#LoginButtonClicked" prefHeight="26.0" prefWidth="83.0" text="Login" />
-      <Label fx:id="ErrorLabel" alignment="CENTER" layoutX="119.0" layoutY="272.0" prefHeight="18.0" prefWidth="140.0" />
+      <Label fx:id="ErrorLabel" alignment="CENTER" layoutX="30.0" layoutY="270.0" prefHeight="18.0" prefWidth="317.0" />
       <RadioButton fx:id="ItemCatalogRadioButton" layoutX="72.0" layoutY="142.0" mnemonicParsing="false" text="Item Catalog">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="OrderCatalogRadioButton" layoutX="220.0" layoutY="142.0" mnemonicParsing="false"  text="Order Catalog">
+      <RadioButton fx:id="OrderCatalogRadioButton" layoutX="220.0" layoutY="142.0" mnemonicParsing="false" text="Order Catalog">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

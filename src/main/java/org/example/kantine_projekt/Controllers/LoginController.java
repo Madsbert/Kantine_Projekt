@@ -7,9 +7,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import org.example.kantine_projekt.CanteenApplication;
 import org.example.kantine_projekt.Domains.AccessLevels;
 import org.example.kantine_projekt.Domains.Employee;
-import org.example.kantine_projekt.HelloApplication;
+import org.example.kantine_projekt.CanteenApplication;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -96,8 +97,8 @@ public class LoginController {
 
     public void switchToSceneItemCatalog(ActionEvent actionEvent,Employee employee) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 380, 380);
+        FXMLLoader fxmlLoader = new FXMLLoader(CanteenApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 975, 615);
 
         // Get controller and set employee
         ItemCatalogController controller = fxmlLoader.getController();
