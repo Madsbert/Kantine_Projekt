@@ -55,18 +55,15 @@ public class ItemsDB implements ItemsDBInterface {
         try(CallableStatement cstmt = conn.prepareCall(sp)){
             cstmt.setInt(1, itemID);
             ResultSet rs = cstmt.executeQuery();
-
-            if(rs.next()) {
-                return rs.getString("fldSupplierName");
-            }else{
-                return null;
+            if (rs.next()) {
+                return rs.getString("SupplierName");
             }
-
         }catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("something went wrong in getSupplierFromItemID");
             throw new RuntimeException(e);
         }
+        return "Failure";
     }
 
     @Override
@@ -101,6 +98,22 @@ public class ItemsDB implements ItemsDBInterface {
 
     @Override
     public void updateItem(Item item) {
+        String sp = "{call update_item(?,?,?,?,?,?)}";
+        Connection conn = DBConnection.getConnection();
+        try (CallableStatement cstmt = conn.prepareCall(sp)){
+            cstmt.setInt(1, item.getItemId());
+            cstmt.setString(2, item.getName());
+            cstmt.setDouble(3, item.getUnitPrice());
+            cstmt.setInt(4,item.getMinimumQuantity());
+            cstmt.setInt(5, item.getCurrentQuantity());
+            cstmt.setInt(6, item.getReorderAmount());
+            cstmt.executeUpdate();
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("something went wrong in createItem");
+            throw new RuntimeException(e);
+        }
 
     }
 
