@@ -2,8 +2,10 @@ package org.example.kantine_projekt.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -20,11 +22,11 @@ public class ItemCatalogController {
 
     List<Item> items = new ArrayList<>();
     @FXML
-    private VBox vBoxForItems;
+    public VBox vBoxForItems;
 
     public void initialize()
     {
-
+        updateDisplayedItems();
     }
 
     boolean nameValid = false;
@@ -134,18 +136,12 @@ public class ItemCatalogController {
         result.ifPresent(item -> {
             // e.g. add to your ObservableList or otherwise use the new item
             items.add(item);
-            System.out.println("Created: " + item);
+            updateDisplayedItems();
         });
     }
 
     private void createAllowed()
     {
-        System.out.println("nameValid : " + nameValid);
-        System.out.println("supplierValid : " + supplierValid);
-        System.out.println("unitPriceValid : " + unitPriceValid);
-        System.out.println("minimumQuantityValid : " + minimumQuantityValid);
-        System.out.println("currentQuantityValid : " + currentQuantityValid);
-        System.out.println("reorderAmountValid : " + reorderAmountValid);
         if (nameValid && supplierValid && unitPriceValid && minimumQuantityValid && currentQuantityValid && reorderAmountValid )
         {
             createButton.setDisable(false);
@@ -166,6 +162,39 @@ public class ItemCatalogController {
     public void getItems()
     {
 
+    }
+
+    public void updateDisplayedItems()
+    {
+        vBoxForItems.getChildren().clear();
+        GridPane grid = new GridPane();
+        grid.setHgap(20);
+        grid.add(new Label("Name"), 0, 0);
+        grid.add(new Label("Supplier"), 1, 0);
+        grid.add(new Label("Unit Price"), 2, 0);
+        grid.add(new Label("Minimum Quantity"), 3, 0);
+        grid.add(new Label("Current Quantity"), 4, 0);
+        grid.add(new Label("Reorder Amount"), 5, 0);
+
+
+        grid.setPadding(new Insets(20, 20, 20, 20));
+        GridPane.setMargin(grid, new Insets(200, 20, 20, 20));
+        grid.setAlignment(Pos.CENTER);
+
+        int i = 1;
+        for (Item item : items)
+        {
+            grid.add(new TextField(item.getName()), 0, i);
+            grid.add(new TextField(item.getSupplierID()), 1, i);
+            grid.add(new TextField("" + item.getUnitPrice()), 2, i);
+            grid.add(new TextField("" + item.getMinimumQuantity()), 3, i);
+            grid.add(new TextField("" + item.getCurrentQuantity()), 4, i);
+            grid.add(new TextField("" + item.getReorderAmount()), 5, i);
+
+            i++;
+        }
+
+        vBoxForItems.getChildren().add(grid);
     }
 
     public void logOut(){}
