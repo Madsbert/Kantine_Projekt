@@ -184,12 +184,91 @@ public class ItemCatalogController {
         int i = 1;
         for (Item item : items)
         {
-            grid.add(new TextField(item.getName()), 0, i);
-            grid.add(new TextField(item.getSupplierID()), 1, i);
-            grid.add(new TextField("" + item.getUnitPrice()), 2, i);
-            grid.add(new TextField("" + item.getMinimumQuantity()), 3, i);
-            grid.add(new TextField("" + item.getCurrentQuantity()), 4, i);
-            grid.add(new TextField("" + item.getReorderAmount()), 5, i);
+            TextField nameField = new TextField(item.getName());
+            nameField.setPromptText("Name");
+            TextField supplierField = new TextField(item.getSupplierID());
+            supplierField.setPromptText("Supplier");
+            TextField unitPriceField = new TextField("" + item.getUnitPrice());
+            unitPriceField.setPromptText("Unit Price");
+            TextField minimumQuantityField = new TextField("" + item.getMinimumQuantity());
+            minimumQuantityField.setPromptText("Minimum Quantity");
+            TextField currentQuantityField = new TextField("" + item.getCurrentQuantity());
+            currentQuantityField.setPromptText("Current Quantity");
+            TextField reorderAmountField = new TextField("" + item.getReorderAmount());
+            reorderAmountField.setPromptText("Reorder Amount");
+
+            grid.add(nameField, 0, i);
+            grid.add(supplierField, 1, i);
+            grid.add(unitPriceField, 2, i);
+            grid.add(minimumQuantityField, 3, i);
+            grid.add(currentQuantityField, 4, i);
+            grid.add(reorderAmountField, 5, i);
+
+            nameField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!nameField.getText().matches("[a-zA-ZæøåÆØÅ]+"))
+                {
+                    nameField.setStyle("-fx-background-color: red");
+                }
+                else
+                {
+                    nameField.setStyle("");
+                }
+            });
+
+            supplierField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!supplierField.getText().matches("[a-zA-ZæøåÆØÅ]+"))
+                {
+                    supplierField.setStyle("-fx-background-color: red");
+                }
+                else
+                {
+                    supplierField.setStyle("");
+                }
+            });
+
+            unitPriceField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!unitPriceField.getText().matches("[0-9]+"))
+                {
+                    unitPriceField.setStyle("-fx-background-color: red");
+                }
+                else
+                {
+                    unitPriceField.setStyle("");
+                }
+            });
+
+            minimumQuantityField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!minimumQuantityField.getText().matches("[0-9]+"))
+                {
+                    minimumQuantityField.setStyle("-fx-background-color: red");
+                }
+                else
+                {
+                    minimumQuantityField.setStyle("");
+                }
+            });
+
+            currentQuantityField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!currentQuantityField.getText().matches("[0-9]+"))
+                {
+                    currentQuantityField.setStyle("-fx-background-color: red");
+                }
+                else
+                {
+                    currentQuantityField.setStyle("");
+                }
+            });
+
+            reorderAmountField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!reorderAmountField.getText().matches("[0-9]+"))
+                {
+                    reorderAmountField.setStyle("-fx-background-color: red");
+                }
+                else
+                {
+                    reorderAmountField.setStyle("");
+                }
+            });
 
             i++;
         }
