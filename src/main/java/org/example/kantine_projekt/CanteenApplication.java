@@ -10,9 +10,9 @@ import java.io.IOException;
 public class CanteenApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(CanteenApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 966, 616);
-        stage.setTitle("Kantine Lagerbeholdning");
+        FXMLLoader fxmlLoader = new FXMLLoader(CanteenApplication.class.getResource("Login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 380, 300);
+        stage.setTitle("Welcome!");
         stage.setScene(scene);
         stage.show();
     }
