@@ -10,7 +10,7 @@
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="vBoxforItems" prefHeight="515.0" prefWidth="975.0" style="-fx-background-color: #EEF1F1;" />
+            <VBox fx:id="vBoxForItems" prefHeight="515.0" prefWidth="975.0" style="-fx-background-color: #EEF1F1;" />
          </content></ScrollPane>
    </center>
    <top>
