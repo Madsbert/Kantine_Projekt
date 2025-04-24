@@ -50,7 +50,8 @@ public class LoginController {
 
 
     /**
-     * logins to the website if you have the clearance and gices right clearence
+     * logins to the website if you have the clearance and gives right clearence.
+     * It gives the current employee that is logged in to the next scene.
      * @param actionEvent an event
      * @throws IOException
      */
