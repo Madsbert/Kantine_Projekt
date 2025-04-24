@@ -1,7 +1,6 @@
 package org.example.kantine_projekt.Controllers;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,7 +9,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.example.kantine_projekt.Domains.AccessLevels;
 import org.example.kantine_projekt.Domains.Employee;
-import org.example.kantine_projekt.View.HelloApplication;
+import org.example.kantine_projekt.HelloApplication;
 
 import java.io.IOException;
 import java.util.ArrayList;
