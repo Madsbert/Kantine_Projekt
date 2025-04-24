@@ -107,7 +107,11 @@ public class ItemsDB implements ItemsDBInterface {
             cstmt.setInt(4,item.getMinimumQuantity());
             cstmt.setInt(5, item.getCurrentQuantity());
             cstmt.setInt(6, item.getReorderAmount());
-            cstmt.executeUpdate();
+            int affectedRows = cstmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Item updated successfully");
+                System.out.println(affectedRows + " rows affected");
+            }
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
