@@ -17,7 +17,7 @@ public class ItemCatalogController {
 
     public void initialize()
     {
-        addNewItem();
+        
     }
 
     boolean nameValid = false;
