@@ -11,7 +11,7 @@ public class CashRegister {
 
     }
 
-    public Items addToBasket(Items item){
+    public Item addToBasket(Item item){
         return null;
     }
 
