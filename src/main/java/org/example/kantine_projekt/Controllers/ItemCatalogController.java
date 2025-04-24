@@ -2,8 +2,11 @@ package org.example.kantine_projekt.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import org.example.kantine_projekt.Domains.Employee;
 
 public class ItemCatalogController {
+
+    private Employee currentEmployee;
 
     @FXML
     private Label welcomeText;
@@ -27,6 +30,9 @@ public class ItemCatalogController {
 
     public void logOut(){}
 
+    public void setCurrentEmployee(Employee currentEmployee){
+        this.currentEmployee = currentEmployee;
+    }
 
 
 
