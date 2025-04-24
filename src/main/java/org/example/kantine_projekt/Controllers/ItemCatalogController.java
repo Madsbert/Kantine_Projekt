@@ -193,6 +193,7 @@ public class ItemCatalogController {
             }
             else
             {
+                System.out.println("Item already exists\nAttempting to update it (" + item.getName() + ", " + item.getItemId() + ")");
                 db.updateItem(item);
             }
         }
@@ -209,6 +210,9 @@ public class ItemCatalogController {
 
     public void updateDisplayedItems()
     {
+        items.clear();
+        ItemsDBInterface db = new ItemsDB();
+        items = db.getAllItems();
         vBoxForItems.getChildren().clear();
         GridPane grid = new GridPane();
         grid.setHgap(20);
@@ -223,8 +227,6 @@ public class ItemCatalogController {
         grid.setPadding(new Insets(20, 20, 20, 20));
         GridPane.setMargin(grid, new Insets(200, 20, 20, 20));
         grid.setAlignment(Pos.CENTER);
-
-        ItemsDBInterface db = new ItemsDB();
 
         int i = 1;
         for (Item item : items)
