@@ -19,7 +19,7 @@ public class ItemsDB implements ItemsDBInterface {
 
     @Override
     public List<Item> getAllItems() {
-        String sp = "{call get_all_items_procedure(?)}";
+        String sp = "{call get_all_items_procedure()}";
         Connection conn = DBConnection.getConnection();
         try(CallableStatement cstmt = conn.prepareCall(sp)) {
             List<Item> itemsList = new ArrayList<Item>();

@@ -1,6 +1,6 @@
 package org.example.kantine_projekt.Persistences;
 
-import org.example.kantine_projekt.Domains.Items;
+import org.example.kantine_projekt.Domains.Item;
 import org.example.kantine_projekt.Domains.Order;
 import org.example.kantine_projekt.Foundation.DBConnection;
 
@@ -34,7 +34,7 @@ public class OrderDB implements OrderDBInterface {
      * @param item
      */
     @Override
-    public void addItemToOrder(Order order, Items item) {
+    public void addItemToOrder(Order order, Item item) {
         //String sql = "Insert Into tblOrderItem (fldOrderID, fldItemID, fldQunatity) VALUES (?,?,?) ";
         Connection conn = DBConnection.getConnection();
         try {
