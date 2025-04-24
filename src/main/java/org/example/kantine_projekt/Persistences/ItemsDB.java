@@ -1,11 +1,11 @@
 package org.example.kantine_projekt.Persistences;
 
-import org.example.kantine_projekt.Domains.Items;
+import org.example.kantine_projekt.Domains.Item;
 
 import java.util.List;
 
 public class ItemsDB implements ItemsDBInterface {
-    private List<Items> items;
+    private List<Item> items;
 
     @Override
     public int getPriceOfItem(int itemID) {
@@ -13,22 +13,22 @@ public class ItemsDB implements ItemsDBInterface {
     }
 
     @Override
-    public List<Items> getAllItems() {
+    public List<Item> getAllItems() {
         return items;
     }
 
     @Override
-    public Items getItem(int itemID) {
+    public Item getItem(int itemID) {
         return null;
     }
 
     @Override
-    public void createItem(Items item) {
+    public void createItem(Item item) {
 
     }
 
     @Override
-    public void updateItem(Items item) {
+    public void updateItem(Item item) {
 
     }
 
