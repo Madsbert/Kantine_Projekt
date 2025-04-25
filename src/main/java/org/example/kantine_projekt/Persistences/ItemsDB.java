@@ -96,6 +96,11 @@ public class ItemsDB implements ItemsDBInterface {
 
     }
 
+    /**
+     * Takes an item, looks up that item based on itemID
+     * and updates the old item, with the new one provided.
+     * @param item
+     */
     @Override
     public void updateItem(Item item) {
         String sp = "{call update_item(?,?,?,?,?,?)}";
@@ -115,12 +120,16 @@ public class ItemsDB implements ItemsDBInterface {
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("something went wrong in createItem");
+            System.out.println("something went wrong in Update Item");
             throw new RuntimeException(e);
         }
 
     }
 
+    /**
+     * deletes an item
+     * @param itemID
+     */
     @Override
     public void deleteItem(int itemID) {
 
